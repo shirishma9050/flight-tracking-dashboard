@@ -1,0 +1,138 @@
+<div class="selected-shell">
+  <header class="topbar">
+    <div class="brand">
+      <button class="menu-button" type="button" aria-label="Open navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="brand-mark" routerLink="/">
+        <span class="brand-icon">fh</span>
+        flyhigh
+      </a>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="tool-button search-tool" type="button" aria-label="Search"></button>
+      <button class="tool-button app-tool" type="button" aria-label="Open apps"></button>
+      <div class="avatar" aria-label="User profile"></div>
+    </div>
+  </header>
+
+  @if (selectedFlight$ | async; as selectedFlight) {
+    <main class="selected-content">
+      <section class="hero-row">
+        <h1>Flight Selected - {{ selectedFlight.flightNumber }}</h1>
+        <a class="back-link" routerLink="/">Dashboard</a>
+      </section>
+
+      @if (stats$ | async; as stats) {
+        <section class="stats-grid" aria-label="Flight summary">
+          @for (stat of stats; track stat.label) {
+            <article class="stat-card" [class]="'stat-card stat-card--' + stat.tone">
+              <span>{{ stat.label }}</span>
+              <strong>{{ stat.value }}</strong>
+            </article>
+          }
+        </section>
+      }
+
+      <section class="route-strip" aria-label="Selected route">
+        <span>{{ selectedFlight.origin }}</span>
+        <span class="route-arrow"></span>
+        <span>{{ selectedFlight.destination }}</span>
+      </section>
+
+      <section class="details-block">
+        <h2>Flight Details</h2>
+        <dl>
+          <div>
+            <dt>Flight Number</dt>
+            <dd>{{ selectedFlight.flightNumber }}</dd>
+          </div>
+          <div>
+            <dt>Callsign</dt>
+            <dd>{{ selectedFlight.callsign }}</dd>
+          </div>
+          <div>
+            <dt>Aircraft Type</dt>
+            <dd>{{ selectedFlight.aircraftType }}</dd>
+          </div>
+          <div>
+            <dt>Origin</dt>
+            <dd>{{ selectedFlight.origin }} ({{ selectedFlight.originCity }})</dd>
+          </div>
+          <div>
+            <dt>Destination</dt>
+            <dd>{{ selectedFlight.destination }} ({{ selectedFlight.destinationCity }})</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>
+              <span class="status-pill" [class]="'status-pill status-pill--' + selectedFlight.status.toLowerCase().replace(' ', '-')">
+                {{ selectedFlight.status }}
+              </span>
+            </dd>
+          </div>
+          <div>
+            <dt>Estimated Departure Time</dt>
+            <dd>{{ selectedFlight.etd }}</dd>
+          </div>
+          <div>
+            <dt>Estimated Arrival Time</dt>
+            <dd>{{ selectedFlight.eta }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      @if (flights$ | async; as flights) {
+        <section class="table-section" aria-label="Flights">
+          <table>
+            <thead>
+              <tr>
+                <th>Flight Number</th>
+                <th>Callsign</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (flight of flights; track trackFlight($index, flight)) {
+                <tr
+                  [class.selected-row]="flight.flightNumber === selectedFlight.flightNumber"
+                  (click)="selectFlight(flight)"
+                  tabindex="0"
+                >
+                  <td>{{ flight.flightNumber }}</td>
+                  <td>{{ flight.callsign }}</td>
+                  <td>{{ flight.origin }}</td>
+                  <td>{{ flight.destination }}</td>
+                  <td>
+                    <span class="status-pill" [class]="'status-pill status-pill--' + flight.status.toLowerCase().replace(' ', '-')">
+                      {{ flight.status }}
+                    </span>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </section>
+      }
+    </main>
+  }
+
+  <footer class="footer">
+    <a class="brand-mark" routerLink="/">
+      <span class="brand-icon">fh</span>
+      FlyHigh
+    </a>
+    <nav aria-label="Footer">
+      <a href="#">Page link</a>
+      <a href="#">Help Center</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Twitter</a>
+      <a href="#">Partners</a>
+    </nav>
+  </footer>
+</div>
