@@ -1,59 +1,75 @@
-# FlightDashboard
+# Flight Tracking & Operations Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+## Overview
 
-## Development server
+The Flight Tracking & Operations Dashboard is a responsive web application built using Angular and Leaflet Maps. The dashboard enables aviation operations personnel to monitor flights, visualize routes, view flight details, and track operational KPIs through an intuitive interface.
 
-To start a local development server, run:
+## Features
 
-```bash
+* Interactive Flight Tracking Dashboard
+* Flight Route Visualization
+* Flight Details Side Panel
+* KPI Cards
+
+  * Total Flights
+  * Active Flights
+  * Delayed Flights
+  * Arrived Flights
+* Search by Callsign
+* Filter by Flight Status
+* Filter by Origin Airport
+* Filter by Destination Airport
+* Responsive Design
+* Mock Flight Data
+
+## Technologies Used
+
+* Angular 19
+* TypeScript
+* RxJS
+* Angular Material
+* Leaflet Maps
+* SCSS
+
+## Installation & Setup
+
+### Clone the Repository
+
+git clone https://github.com/shirishma9050/flight-tracking-dashboard.git
+
+### Install Dependencies
+
+npm install
+
+### Run the Application
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Access the Application
 
-## Code scaffolding
+Open your browser and navigate to:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+http://localhost:4200
 
-```bash
-ng generate component component-name
-```
+## Project Structure
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+src/
+├── app/
+├── assets/
+├── services/
+├── models/
+├── shared/
+└── components/
 
-```bash
-ng generate --help
-```
+## Functionalities Implemented
 
-## Building
+* Dashboard Overview Screen
+* Flight Details Screen
+* KPI Dashboard
+* Search and Filter Functionality
+* Route Visualization UI
+* Responsive Layout
 
-To build the project run:
+## Author
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Shirishma
